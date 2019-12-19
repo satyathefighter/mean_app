@@ -8,7 +8,7 @@ var methodOverride = require('method-override');
 var mongoose = require('mongoose');
 
 // Connect mongoose to our database
-mongoose.connect('mongodb://localhost:27017/bucketlist',{ useNewUrlParser: true });
+mongoose.connect('mongodb://localhost:27017/mean_app',{ useNewUrlParser: true });
 const monDb = mongoose.connection;
 monDb.on('error', function() {
   console.error('MongoDB Connection Error. Please make sure that', 'mongodb://localhost:27017/bucketlist', 'is running.');
