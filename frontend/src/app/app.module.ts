@@ -8,12 +8,14 @@ import { HeaderComponent } from './header/header.component';
 import { LayoutModule } from '@angular/cdk/layout';
 import { MaterialModule } from './material.module';
 import { FooterComponent } from './footer/footer.component';
+import { ThemePickerComponent } from './shared/theme-picker/theme-picker.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
-    FooterComponent
+    FooterComponent,
+    ThemePickerComponent
   ],
   imports: [
     BrowserModule,

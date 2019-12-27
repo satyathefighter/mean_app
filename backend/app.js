@@ -5,16 +5,9 @@ var path = require('path');
 var bodyParser = require('body-parser');
 var cors = require('cors');
 var methodOverride = require('method-override');
-var mongoose = require('mongoose');
-
-// Connect mongoose to our database
-mongoose.connect('mongodb://localhost:27017/mean_app',{ useNewUrlParser: true });
-const monDb = mongoose.connection;
-monDb.on('error', function() {
-  console.error('MongoDB Connection Error. Please make sure that', 'mongodb://localhost:27017/bucketlist', 'is running.');
-});
-
-const port = process.env.PORT || process.env.VCAP_APP_PORT || 3000;
+var jpv = require('jpv');
+const port = process.env.PORT || 3000;
+require('./database/db');
 
 
 //Middleware for CORS
@@ -29,6 +22,20 @@ app.use(methodOverride('X-HTTP-Method-Override'));
 */
 app.use(express.static(path.join(__dirname, 'public')));
 app.get('/', (req, res) => {
+    // var json = {
+    //     status : 'OK',
+    //     data : {
+    //       url : 'http://example.com'
+    //     }
+    //   };
+       
+    //   var pattern = {
+    //     status : 'OK',
+    //     data : {
+    //       url : "[url]"
+    //     }
+    //   };
+    //res.send(jpv.validate(json, pattern ));
     res.send("Invalid page");
 });
 
@@ -38,7 +45,7 @@ app.get('/', (req, res) => {
  |--------------------------------------
  */
 
-require('./router/api')(app);
+require('./routers/api')(app);
 
 //Listen to port 3000
 app.listen(port, () => {
